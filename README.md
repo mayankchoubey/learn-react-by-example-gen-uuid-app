@@ -9,7 +9,7 @@ This repo has two apps:
 ```
 cd vanilla-app
 npm i
-node index.mjs
+npm start
 ```
 
 Open a browser with URL http://localhost:8080.
