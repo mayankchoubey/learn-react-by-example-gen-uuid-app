@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Learn react by example - vanilla UUID generator app</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/app.js"></script>
+  </head>
+
+  <body class="text-center" onload="createUUID()">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary sticky-top">
+      <a class="navbar-brand" href="#">Online UUID Generator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#online-uuid-nav-data" aria-controls="online-uuid-nav-data" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="online-uuid-nav-data">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://datatracker.ietf.org/doc/html/rfc4122">What is V4 UUID?</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-3">Online UUID Generator</h1>
+            <p class="text-small">Your Version 4 UUID:</p>
+            <p>
+                <span class="display-6 align-middle" id="uuid"></span>
+                <button id="copy-button" class="btn btn-dark align-baseline" title="Copy the UUID to the clipboard." alt="Copy the UUID to the clipboard." onclick="copyUUID()">
+                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4OC4zIDQ4OC4zIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODguMyA0ODguMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zMTQuMjUsODUuNGgtMjI3Yy0yMS4zLDAtMzguNiwxNy4zLTM4LjYsMzguNnYzMjUuN2MwLDIxLjMsMTcuMywzOC42LDM4LjYsMzguNmgyMjdjMjEuMywwLDM4LjYtMTcuMywzOC42LTM4LjZWMTI0ICAgIEMzNTIuNzUsMTAyLjcsMzM1LjQ1LDg1LjQsMzE0LjI1LDg1LjR6IE0zMjUuNzUsNDQ5LjZjMCw2LjQtNS4yLDExLjYtMTEuNiwxMS42aC0yMjdjLTYuNCwwLTExLjYtNS4yLTExLjYtMTEuNlYxMjQgICAgYzAtNi40LDUuMi0xMS42LDExLjYtMTEuNmgyMjdjNi40LDAsMTEuNiw1LjIsMTEuNiwxMS42VjQ0OS42eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik00MDEuMDUsMGgtMjI3Yy0yMS4zLDAtMzguNiwxNy4zLTM4LjYsMzguNmMwLDcuNSw2LDEzLjUsMTMuNSwxMy41czEzLjUtNiwxMy41LTEzLjVjMC02LjQsNS4yLTExLjYsMTEuNi0xMS42aDIyNyAgICBjNi40LDAsMTEuNiw1LjIsMTEuNiwxMS42djMyNS43YzAsNi40LTUuMiwxMS42LTExLjYsMTEuNmMtNy41LDAtMTMuNSw2LTEzLjUsMTMuNXM2LDEzLjUsMTMuNSwxMy41YzIxLjMsMCwzOC42LTE3LjMsMzguNi0zOC42ICAgIFYzOC42QzQzOS42NSwxNy4zLDQyMi4zNSwwLDQwMS4wNSwweiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=">
+                    <span id="copy-button-text"></span>
+                </button>
+            </p>
+            <p>
+                <button id="refresh-button" class="btn btn-primary align-baseline" title="Generate a new UUID." alt="Generate a new UUID." onclick="createUUID()">
+                    <img src="data:image/svg+xml;utf8;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik03IDloLTd2LTdoMXY1LjJjMS44NTMtNC4yMzcgNi4wODMtNy4yIDExLTcuMiA2LjYyMyAwIDEyIDUuMzc3IDEyIDEycy01LjM3NyAxMi0xMiAxMmMtNi4yODYgMC0xMS40NS00Ljg0NC0xMS45NTktMTFoMS4wMDRjLjUwNiA1LjYwMyA1LjIyMSAxMCAxMC45NTUgMTAgNi4wNzEgMCAxMS00LjkyOSAxMS0xMXMtNC45MjktMTEtMTEtMTFjLTQuNjYgMC04LjY0NyAyLjkwNC0xMC4yNDkgN2g1LjI0OXYxeiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPg==">
+                    <span class="button-with-icon" id="refresh-button-text">Generate another UUID</span>
+                </button>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">The UUIDs generated by this site conform to RFC 4122 whenever possible. <a class="text-small" href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Read more about UUIDs at Wikipedia.</a></span>
+        </div>
+    </footer>
+  </body>
+</html>
